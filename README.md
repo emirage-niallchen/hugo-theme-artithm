@@ -1,5 +1,7 @@
 # Artithm
 
+简体中文 · [English](README.en.md)
+
 Artithm 是从我的个人博客里整理出来的 Hugo 主题。因为认为自己的品味（电子老婆-玛奇玛）还可以，所以把这个主题挂了出来。
 
 源代码基于 [Reimu](https://github.com/D-Sketon/hugo-theme-reimu)，部分灵感与布局样式参考了 [Hao](https://github.com/chengzhongxue/halo-theme-hao)。
