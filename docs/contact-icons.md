@@ -1,5 +1,7 @@
 # 联系方式品牌图标
 
+简体中文 · [English](contact-icons.en.md)
+
 图标均保存在 `layouts/partials/icon/`，构建时内嵌到 HTML，不会向外部图标服务发送请求。SVG 使用固定品牌颜色，夜间模式仍保留原色。品牌标识的商标权归各平台所有。
 
 - 小红书、知乎、bilibili、微信、Substack、Medium、V2EX：[Simple Icons](https://github.com/simple-icons/simple-icons)，[CC0-1.0](https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md)。原始路径来自 `icons/<平台>.svg`；补充品牌颜色，小红书增加红色底板，知乎和微信增加白色底板。

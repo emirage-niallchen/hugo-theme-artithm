@@ -1,5 +1,7 @@
 # 侧栏联系方式
 
+简体中文 · [English](contact-links.en.md)
+
 编辑 `hugo.toml` 的 `[params.contact]` 即可。它们出现在作者卡片「写信给我」下方，桌面侧栏和手机菜单共用。保存后重新构建/部署即可生效。
 
 ## 填网址，直接跳转
@@ -53,4 +55,4 @@ wechat = { account = '你的公众号名称' }
 
 在 `data/contact.yml` 移动条目即可排序。各平台使用本地 SVG 和品牌原色，不依赖第三方图标接口。GitHub、X、Medium 等原本是黑白品牌，保留原色。
 
-图标来源和授权见 `docs/contact-icons.md`。已有 Ghost 入口继续保留，可填地址启用。
+图标来源和授权见 [图标说明](contact-icons.md)。已有 Ghost 入口继续保留，可填地址启用。

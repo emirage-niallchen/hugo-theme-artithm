@@ -6,7 +6,7 @@ Artithm is a Hugo theme put together from my personal blog. I think my taste (my
 
 The code is based on [Reimu](https://github.com/D-Sketon/hugo-theme-reimu), with some inspiration and layout ideas from [Hao](https://github.com/chengzhongxue/halo-theme-hao).
 
-[My blog](https://artithm.com/) · [Example configuration](exampleSite/hugo.toml) · [Contact guide (Chinese)](docs/contact-links.md) · [Asset notices (Chinese)](NOTICE.md)
+[My blog](https://artithm.com/) · [Example configuration](exampleSite/hugo.toml) · [Contact guide](docs/contact-links.en.md) · [Asset notices](NOTICE.en.md)
 
 ![Artithm desktop preview](https://raw.githubusercontent.com/emirage-niallchen/hugo-theme-artithm/main/images/screenshot.png)
 
@@ -102,7 +102,7 @@ github = 'https://github.com/yourname'
 wechat = { account = 'Your account', qrcode = '/images/wechat.png', note = 'Scan to follow' }
 ```
 
-Platform names and their order are defined in `data/contact.yml`. Override it with a file at the same path in your site. See the [contact guide (Chinese)](docs/contact-links.md) for more options.
+Platform names and their order are defined in `data/contact.yml`. Override it with a file at the same path in your site. See the [contact guide](docs/contact-links.en.md) for more options.
 
 ### Moments
 
@@ -134,7 +134,7 @@ name = 'Desktop pet'
 nicknames = ['Desktop pet', 'On a break', 'On duty']
 ```
 
-Set `enable = false` to turn it off. See the [pet guide (Chinese)](docs/pet.md) to replace the sprite sheet.
+Set `enable = false` to turn it off. See the [pet guide](docs/pet.en.md) to replace the sprite sheet.
 
 ### Letter dialog
 
@@ -148,7 +148,7 @@ challenge_endpoint = '/api/letter-challenge'
 image = 'images/mkm-letter.png'
 ```
 
-See the [letter dialog guide (Chinese)](docs/letterbox.md) for the API contract. This repository provides the interface, without a mail server or Cloudflare Functions. Keep SMTP passwords and other credentials out of Hugo configuration and static files.
+See the [letter dialog guide](docs/letterbox.en.md) for the API contract. This repository provides the interface, without a mail server or Cloudflare Functions. Keep SMTP passwords and other credentials out of Hugo configuration and static files.
 
 ## Directory layout
 
@@ -159,7 +159,7 @@ See the [letter dialog guide (Chinese)](docs/letterbox.md) for the API contract.
 | `static/` | Images, fonts, and icons |
 | `config/_default/params.yml` | Default theme settings |
 | `exampleSite/` | A demo site you can build locally |
-| `docs/` | Configuration and extension guides in Chinese |
+| `docs/` | Configuration and extension guides in Chinese and English |
 
 After updating the theme, run `hugo --gc --minify` in your site to check the build. Keep your template and style overrides in the matching directories of your own site.
 
@@ -167,4 +167,4 @@ After updating the theme, run `hugo --gc --minify` in your site to check the bui
 
 Thanks to [Reimu](https://github.com/D-Sketon/hugo-theme-reimu) for the code base and [Hao](https://github.com/chengzhongxue/halo-theme-hao) for inspiration and layout ideas.
 
-The code is licensed under [MIT](LICENSE). See the [asset notices (Chinese)](NOTICE.md) for other materials.
+The code is licensed under [MIT](LICENSE). See the [asset notices](NOTICE.en.md) for other materials.
