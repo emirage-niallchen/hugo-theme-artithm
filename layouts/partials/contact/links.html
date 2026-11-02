@@ -1,0 +1,20 @@
+{{- $items := partialCached "contact/items.html" . -}}
+{{- with $items -}}
+<nav class="sidebar-contact" aria-label="在其他地方找到我">
+  {{- range . -}}
+    {{- if .popup -}}
+    <button class="sidebar-contact-link" type="button" data-contact-open="{{ .key }}"
+            aria-label="{{ .label }}：查看联系方式" aria-haspopup="dialog" aria-controls="contact-dialog">
+      <span class="contact-icon">{{ partial (printf "icon/%s.svg" .key) . | safeHTML }}</span>
+      <span class="contact-tooltip" aria-hidden="true">{{ .label }}</span>
+    </button>
+    {{- else -}}
+    <a class="sidebar-contact-link" href="{{ .url }}" aria-label="{{ .label }}（新窗口打开）"
+       target="_blank" rel="noopener nofollow noreferrer">
+      <span class="contact-icon">{{ partial (printf "icon/%s.svg" .key) . | safeHTML }}</span>
+      <span class="contact-tooltip" aria-hidden="true">{{ .label }}</span>
+    </a>
+    {{- end -}}
+  {{- end -}}
+</nav>
+{{- end -}}

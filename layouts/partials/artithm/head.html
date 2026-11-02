@@ -1,0 +1,8 @@
+{{- $css := resources.Get "css/artithm.css" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- with .Site.Params.artithm.background -}}
+<style>:root{--artithm-background:url({{ partial "helpers/artithmURL.html" . }});}</style>
+{{- end -}}
+{{- with .Site.Params.artithm.sidebar_background -}}
+<style>:root{--artithm-sidebar-background:url({{ partial "helpers/artithmURL.html" . }});}</style>
+{{- end -}}

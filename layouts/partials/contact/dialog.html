@@ -1,0 +1,32 @@
+{{- $items := partialCached "contact/items.html" . -}}
+{{- if $items -}}
+{{- $css := resources.Get "css/contact.css" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- $cards := where $items "popup" "!=" "" -}}
+{{- if $cards -}}
+{{- $js := resources.Get "js/contact.js" | minify | fingerprint -}}
+<dialog id="contact-dialog" class="contact-dialog" aria-label="联系方式">
+  <div class="contact-surface">
+    <button class="contact-close" type="button" data-contact-close aria-label="关闭联系方式" autofocus>×</button>
+    {{- range $cards -}}
+    {{- $label := .label -}}
+    <section class="contact-card" data-contact-card="{{ .key }}" hidden>
+      <span class="contact-card-icon">{{ partial (printf "icon/%s.svg" .key) . | safeHTML }}</span>
+      <h2 id="contact-title-{{ .key }}">{{ .label }}</h2>
+      {{- with .account -}}
+      <p class="contact-account" tabindex="0">{{ . }}</p>
+      <button class="contact-copy" type="button" data-contact-copy="{{ . }}">复制账号</button>
+      {{- end -}}
+      {{- with .qrcode -}}
+      <img class="contact-qrcode" src="{{ partial "helpers/artithmURL.html" . }}" width="240" height="240" alt="{{ $label }}二维码" loading="lazy" decoding="async">
+      {{- end -}}
+      {{- with .note -}}<p class="contact-note">{{ . }}</p>{{- end -}}
+      {{- with .url -}}<a class="contact-visit" href="{{ . }}" target="_blank" rel="noopener nofollow noreferrer">前往主页 <span aria-hidden="true">↗</span></a>{{- end -}}
+    </section>
+    {{- end -}}
+    <p class="contact-status" role="status" aria-live="polite" aria-atomic="true"></p>
+  </div>
+</dialog>
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{- end -}}
+{{- end -}}

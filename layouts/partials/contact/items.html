@@ -1,0 +1,24 @@
+{{- /* Normalize a URL string or an account card; shared by desktop, mobile and dialog. */ -}}
+{{- $items := slice -}}
+{{- $config := .Site.Params.contact | default dict -}}
+{{- range hugo.Data.contact.items -}}
+  {{- if ne .key "email" -}}
+    {{- $value := index $config .key | default "" -}}
+    {{- $url := "" -}}
+    {{- $account := "" -}}
+    {{- $qrcode := "" -}}
+    {{- $note := "" -}}
+    {{- if reflect.IsMap $value -}}
+      {{- $url = $value.url | default "" | strings.TrimSpace -}}
+      {{- $account = $value.account | default "" | strings.TrimSpace -}}
+      {{- $qrcode = $value.qrcode | default "" | strings.TrimSpace -}}
+      {{- $note = $value.note | default "" | strings.TrimSpace -}}
+    {{- else -}}
+      {{- $url = $value | strings.TrimSpace -}}
+    {{- end -}}
+    {{- if or $url $account $qrcode $note -}}
+      {{- $items = $items | append (dict "key" .key "label" .label "url" $url "account" $account "qrcode" $qrcode "note" $note "popup" (or $account $qrcode $note)) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $items -}}

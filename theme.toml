@@ -1,0 +1,19 @@
+name = 'Artithm'
+license = 'MIT'
+licenselink = 'https://github.com/emirage-niallchen/hugo-theme-artithm/blob/main/LICENSE'
+description = 'A Makima (MKM)-inspired, rose-toned Hugo theme with moments, contact cards and an animated cat.'
+homepage = 'https://github.com/emirage-niallchen/hugo-theme-artithm'
+demosite = 'https://artithm.com/'
+tags = ['blog', 'chinese', 'responsive', 'dark', 'light', 'cat']
+features = ['blog', 'responsive', 'dark mode', 'moments', 'contact cards', 'animated pet']
+min_version = '0.158.0'
+
+[author]
+name = 'emirage-niallchen'
+homepage = 'https://github.com/emirage-niallchen'
+
+[original]
+name = 'Reimu'
+author = 'D-Sketon'
+homepage = 'https://github.com/D-Sketon/hugo-theme-reimu'
+repo = 'https://github.com/D-Sketon/hugo-theme-reimu'

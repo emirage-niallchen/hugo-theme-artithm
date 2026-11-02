@@ -1,0 +1,30 @@
+.sidebar-contact{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:300px;margin:12px 16px 4px}
+/* Let the mobile drawer scroll when several rows of accounts are enabled. */
+#mobile-nav .sidebar-wrap:has(.sidebar-contact){max-height:none;justify-content:flex-start}
+.sidebar-contact-link{position:relative;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;flex:0 0 44px;width:44px;height:44px;padding:10px;border:1px solid transparent;border-radius:12px;background:rgba(255,250,240,.42);color:#65483f;text-decoration:none;cursor:pointer;font:inherit;transition:transform .18s ease,background .18s ease,box-shadow .18s ease}
+.sidebar-contact-link:hover,.sidebar-contact-link:focus-visible{transform:translateY(-2px);background:#fff8eb;box-shadow:0 4px 12px #4d30231a}
+.sidebar-contact-link:focus-visible{outline:2px solid #ac625d;outline-offset:3px}
+.sidebar-contact .contact-icon{display:inline-flex;flex:none;width:24px;height:24px;line-height:1}
+.sidebar-contact .contact-icon svg,.contact-card-icon svg{display:block;width:100%;height:100%}
+.contact-tooltip{position:absolute;z-index:2;bottom:calc(100% + 6px);left:50%;transform:translate(-50%,3px);padding:4px 8px;border-radius:5px;background:#59413b;color:#fff8ed;font:11px/1.5 system-ui,sans-serif;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s ease,transform .15s ease}
+.sidebar-contact-link:hover .contact-tooltip,.sidebar-contact-link:focus-visible .contact-tooltip{opacity:1;transform:translate(-50%,0)}
+html.contact-is-open{overflow:hidden}
+.contact-dialog{box-sizing:border-box;width:min(360px,calc(100% - 32px));max-width:none;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);margin:auto;padding:0;border:1px solid #d9c4a8;border-radius:16px;background:#fff9ed;color:#59413b;box-shadow:0 20px 60px #241b2540;overflow:auto;overscroll-behavior:contain}
+.contact-dialog::backdrop{background:#231a1b99;backdrop-filter:blur(6px)}
+.contact-surface{position:relative;box-sizing:border-box;padding:34px 28px 18px;text-align:center;font-family:'Songti SC','Noto Serif CJK SC','SimSun',serif}
+.contact-card[hidden]{display:none}
+.contact-card-icon{display:block;width:40px;height:40px;margin:0 auto 16px}
+.contact-card h2{margin:0 0 14px;color:inherit;font:500 22px/1.5 'Songti SC','Noto Serif CJK SC','SimSun',serif}
+.contact-account{margin:0 0 12px;font:16px/1.7 system-ui,sans-serif;overflow-wrap:anywhere;white-space:pre-line;user-select:all}
+.contact-copy,.contact-visit{display:inline-flex;align-items:center;justify-content:center;gap:10px;box-sizing:border-box;min-height:44px;padding:8px 16px;border:1px solid #cbb59b;border-radius:6px;background:transparent;color:#874b43;font:14px/1.5 'Songti SC','SimSun',serif;text-decoration:none;cursor:pointer}
+.contact-copy:hover,.contact-visit:hover{background:#f2e6d5;color:#874b43}
+.contact-card .contact-qrcode{display:block;box-sizing:border-box;width:min(240px,100%);height:auto;max-height:45vh;object-fit:contain;margin:20px auto 0;padding:10px;border:1px solid #e2d5c1;border-radius:8px;background:#fff}
+.contact-note{margin:16px 0 0;color:#8c7368;font-size:14px;line-height:1.8;overflow-wrap:anywhere;white-space:pre-line}
+.contact-visit{margin-top:18px}
+.contact-close{position:absolute;right:8px;top:8px;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:transparent;color:#8c7368;font:28px/1 serif;cursor:pointer}
+.contact-close:hover{background:#f2e6d5}
+.contact-close:focus-visible,.contact-copy:focus-visible,.contact-visit:focus-visible,.contact-account:focus-visible{outline:2px solid #ac625d;outline-offset:3px}
+.contact-status{min-height:22px;margin:14px 0 0;color:#8c7368;font:12px/1.8 system-ui,sans-serif}
+[data-theme="dark"] .sidebar-contact-link{background:#fff9edcc}
+[data-theme="dark"] .sidebar-contact-link:hover,[data-theme="dark"] .sidebar-contact-link:focus-visible{background:#fff9ed}
+@media(prefers-reduced-motion:reduce){.sidebar-contact-link,.contact-tooltip{transition:none}}

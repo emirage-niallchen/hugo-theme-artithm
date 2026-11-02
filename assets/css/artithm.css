@@ -1,0 +1,381 @@
+/* —— 本地子集字体（仅含所需字形，各几 KB，秒载无阻塞）—— */
+@font-face{
+  font-family:'ArtithmTitle';
+  src:url('../fonts/cormorant-artithm.woff2') format('woff2');
+  font-weight:400 700;font-style:normal;font-display:block;
+}
+@font-face{
+  font-family:'LoaderHan';
+  src:url('../fonts/mashan-line.woff2') format('woff2');
+  font-weight:400;font-style:normal;font-display:block;
+}
+@font-face{
+  font-family:'BarkJP';
+  src:url('../fonts/bark-jp.woff2') format('woff2');
+  font-weight:400 700;font-style:normal;font-display:swap;
+}
+/* —— 配色淡化：把 reimu 默认的鲜红整体调柔（带点灰的玫瑰/赭调）—— */
+:root{
+  --red-0:#c97a7a; --red-1:#cf8888; --red-2:#dba0a0;
+  --red-3:#ebc4c4; --red-4:#f2d9d9; --red-5:#f8ecec; --red-6:#fcf6f6;
+  --color-link:#b56b6b;
+}
+[data-theme="dark"]:root{
+  --red-0:#cf8888; --red-1:#cf8888; --red-2:#c79a9a;
+}
+
+/* —— 全局背景图（固定在最底层，内容层半透明使其透出）—— */
+body{
+  background:
+    var(--artithm-background, none)
+    center center / cover no-repeat fixed;
+}
+#wrap{ background:transparent !important; }
+/* —— 顶部头图（banner）轻微透明 —— */
+#header img{ opacity:.8; }
+/* 文章封面图完全不透明，覆盖底图 */
+#header img.cover-img{ opacity:1; }
+[data-theme="dark"] body{
+  background:
+    linear-gradient(rgba(33,37,43,.55), rgba(33,37,43,.55)),
+    var(--artithm-background, none)
+    center center / cover no-repeat fixed;
+}
+
+/* —— 顶部菜单 —— */
+/* 菜单项之间加短横线分隔（功能项之间） */
+#main-nav .main-nav-link-wrap + .main-nav-link-wrap::before{
+  content:"-";opacity:.35;margin:0 2px;align-self:center;
+}
+/* 分类项之间用更淡的点 */
+#main-nav .nav-category + .nav-category::before{content:"·";}
+/* 分类项整体淡一些、字号略小，和 首页/归档/标签/关于 区分 */
+#main-nav .nav-category .main-nav-link{
+  font-weight:500;opacity:.55;font-size:.92em;letter-spacing:0;
+}
+#main-nav .nav-category:hover .main-nav-link{opacity:.9;}
+/* 顶部菜单分类后的文章数小角标 */
+#main-nav .nav-category .nav-cat-count{
+  font-size:.7em;opacity:.6;margin-left:2px;vertical-align:super;
+}
+/* 收紧每项左右内边距，缓解拥挤 */
+#main-nav .main-nav-link-wrap{padding:0 9px;}
+#main-nav .main-nav-link{padding:20px 4px;}
+
+/* —— 右侧侧栏分类组件：明显区别于 最新文章/标签 等其他组件 —— */
+/* 整块卡片化：浅色底 + 圆角 + 左侧粗色条 + 标题前小图标 */
+.widget-category{
+  border-left:4px solid var(--red-2);
+  background:var(--red-6);
+  border-radius:8px;
+  padding:14px 16px;
+  box-shadow:0 1px 6px rgba(0,0,0,.04);
+}
+.widget-category .widget-title{
+  color:var(--red-0);
+  letter-spacing:1px;
+}
+.widget-category .widget-title::before{
+  content:"❖ ";font-size:.85em;opacity:.7;
+}
+.category-list--badged .category-list-item{margin:6px 0;}
+.category-list--badged .category-list-link{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:3px 0;
+}
+/* 每个分类后的文章数徽标 */
+.category-count{
+  display:inline-block;min-width:1.5em;padding:0 .45em;
+  font-size:.76em;line-height:1.6;text-align:center;
+  background:var(--red-3);color:#fff;
+  border-radius:10px;
+}
+
+/* —— 关于页（vault 根 about.md → content/about.md，纯 markdown 渲染） —— */
+.about-page{
+  max-width:760px;margin:0 auto;line-height:2.0;
+  font-size:1.02em;
+}
+/* 一级小节标题 ## 关于本站 / ## 写些什么 —— 居中、酒红下划线 */
+.about-page h2{
+  text-align:center;
+  display:block;
+  font-size:1.55em;font-weight:700;
+  color:var(--red-1);
+  margin:2.2em auto 1.2em;
+  padding-bottom:.35em;
+  border:0;
+  position:relative;
+}
+.about-page h2::after{
+  content:"";display:block;
+  width:3em;height:2px;margin:.45em auto 0;
+  background:var(--red-3);
+  border-radius:2px;
+}
+.about-page h2:first-child{margin-top:.5em;}
+/* 文类小标 #### 踏莎游心 等 —— 极简款，居中淡酒红 */
+.about-page h4{
+  text-align:center;
+  font-size:1.18em;font-weight:600;
+  color:var(--red-1);
+  margin:2.2em 0 .7em;
+  padding:0;
+  border:0;
+  letter-spacing:.32em;
+  text-indent:.32em; /* 抵消 letter-spacing 造成的整体偏左 */
+}
+.about-page h4+p{margin-top:.25em;}
+/* 关于页禁用主题的 # 锚点链接（约 hover 出现的 #，破坏装饰款标题） */
+.about-page h2 .header-anchor,
+.about-page h3 .header-anchor,
+.about-page h4 .header-anchor{display:none!important;}
+.about-page p{
+  margin:1.0em 0;
+  text-indent:2em;
+  letter-spacing:.2px;
+}
+/* 段首一两个字加强：用 strong / em 的话主题已经管了；这里给链接/重点一点对比 */
+.about-page strong{color:var(--red-1);}
+.about-page blockquote{
+  margin:1.5em 0;padding:1em 1.4em;
+  background:var(--red-5-5);
+  border-left:3px solid var(--red-3);
+  border-radius:8px;
+  font-size:1.02em;line-height:1.9;
+}
+.about-page blockquote p{text-indent:0;}
+@media (max-width:680px){
+  .about-page{font-size:.98em;line-height:1.85;}
+  .about-page h2{font-size:1.35em;}
+  .about-page h4{font-size:1.05em;letter-spacing:.22em;text-indent:.22em;}
+}
+/* —— 侧栏卡片底图 —— */
+.sidebar-wrap{
+  position:relative;
+  background:
+    linear-gradient(rgba(255,255,255,.55), rgba(255,255,255,.62)),
+    var(--artithm-sidebar-background, none)
+    center center / cover no-repeat !important;
+  overflow:hidden;
+}
+[data-theme="dark"] .sidebar-wrap{
+  background:
+    linear-gradient(rgba(33,37,43,.58), rgba(33,37,43,.64)),
+    var(--artithm-sidebar-background, none)
+    center center / cover no-repeat !important;
+}
+/* 描述文字：文言较长，调小字号 + 留白便于阅读 */
+.sidebar-description{
+  font-size:.86em;line-height:1.7;opacity:.85;
+  padding:0 4px;text-align:justify;
+}
+
+/* ============ MKM（玛奇玛）风加载动效 ============ */
+/* 1) 门：毛玻璃白 */
+#loader .loading-bg{
+  background:rgba(255,255,255,.55) !important;
+  background-color:rgba(255,255,255,.55) !important;
+  backdrop-filter:blur(16px) saturate(1.1);
+  -webkit-backdrop-filter:blur(16px) saturate(1.1);
+  transition:transform 1.25s cubic-bezier(.5,.02,.62,.12) !important;
+}
+[data-theme="dark"] #loader .loading-bg{
+  background:rgba(28,24,26,.55) !important;
+  background-color:rgba(28,24,26,.55) !important;
+}
+
+/* 2) spinner 容器：门完全消失(1.25s)后字才开始淡出，红光期间持续闪 */
+#loader .spinner-box{
+  transition:opacity .8s ease 1.35s, transform 1s cubic-bezier(.5,.02,.62,.12) 1.35s, visibility 0s linear 2.15s !important;
+  flex-direction:column;
+  gap:26px;
+}
+
+/* 3) 站点名 Artithm：纤细锋利的高对比衬线（Cormorant）+ 初始模糊，镜头聚焦变清晰 */
+#loader .loading-title{
+  position:relative;
+  font-family:'ArtithmTitle','Cormorant',serif;
+  font-weight:500;
+  font-size:6rem;
+  line-height:1;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:#3a0e12;
+  text-shadow:0 2px 14px rgba(120,20,28,.18);
+  opacity:0;
+  filter:blur(13px);
+  transform:scale(1.06);
+  animation:mkm-focus 1.9s cubic-bezier(.22,.61,.36,1) forwards;
+}
+/* 聚焦清晰后，字名的红色微光闪烁（白底用正常红，不用 screen 混合） */
+#loader .loading-title::after{
+  content:attr(data-text);
+  position:absolute;left:0;top:0;
+  font-family:'ArtithmTitle','Cormorant',serif;font-weight:500;
+  text-transform:uppercase;letter-spacing:.22em;
+  color:#ff1f2e;
+  opacity:0;
+  animation:mkm-glow 1.8s ease-in-out 1.5s infinite;
+}
+
+/* 4) 提示文字"我看得到哦…"：狂放毛笔书法 Ma Shan Zheng + 放大 + 镜头聚焦 */
+#loader .spinner-box .loading-word{
+  position:static !important;
+  transform:none !important;
+  font-family:'LoaderHan','Ma Shan Zheng',cursive !important;
+  color:#5a1218 !important;
+  font-weight:400 !important;
+  font-size:2.1rem !important;
+  letter-spacing:.06em;
+  max-width:86vw;text-align:center;line-height:1.6;
+  text-shadow:0 1px 8px rgba(255,255,255,.5);
+  opacity:0;
+  filter:blur(10px);
+  animation:mkm-focus 1.7s cubic-bezier(.22,.61,.36,1) .35s forwards;
+}
+
+/* 5) 开门式收场：左右黑框带缓动滑开 + 轻微外推，spinner 放大淡出 */
+#loader.loading .loading-left-bg{
+  transform:translateX(-100%) !important;
+}
+#loader.loading .loading-right-bg{
+  transform:translateX(100%) !important;
+}
+#loader.loading .spinner-box{
+  opacity:0 !important;visibility:hidden !important;
+  transform:scale(1.18) !important;
+}
+
+/* —— keyframes —— */
+@keyframes mkm-focus{
+  0%{opacity:0;filter:blur(13px);transform:scale(1.06);}
+  60%{opacity:1;}
+  100%{opacity:1;filter:blur(0);transform:scale(1);}
+}
+/* 红色微光闪烁：贯穿周期多次闪动，明显可见，glitch 危险感 */
+@keyframes mkm-glow{
+  0%   {opacity:0;text-shadow:none;}
+  8%   {opacity:.9; text-shadow:0 0 16px #ff2533,0 0 34px #ff2533;}
+  12%  {opacity:.2;}
+  16%  {opacity:.85;text-shadow:0 0 22px #ff2533,0 0 46px #ff2533;}
+  20%  {opacity:.1;}
+  24%  {opacity:.7; text-shadow:0 0 14px #ff2533;}
+  30%  {opacity:0;}
+  60%  {opacity:0;text-shadow:none;}
+  64%  {opacity:.8; text-shadow:0 0 20px #ff2533,0 0 40px #ff2533;}
+  68%  {opacity:.15;}
+  72%  {opacity:.6; text-shadow:0 0 12px #ff2533;}
+  78%  {opacity:0;}
+  100% {opacity:0;text-shadow:none;}
+}
+@media (prefers-reduced-motion: reduce){
+  #loader .loading-title,#loader .spinner-box .loading-word{
+    animation:none;opacity:1;filter:none;transform:none;
+  }
+  #loader .loading-title::after{animation:none;}
+}
+
+/* —— 正文字号：比默认 14px 大一点点 —— */
+.article-entry{ font-size:15px; }
+
+/* —— 顶部导航栏文字：放大 + 深酒红 —— */
+#main-nav .main-nav-link{
+  font-size:17px !important;
+  color:#5a1218 !important;
+  font-weight:600 !important;
+}
+/* 分类项保持淡色区分，但也走深酒红基调 */
+#main-nav .nav-category .main-nav-link{
+  color:#7a2a30 !important;
+}
+
+/* —— 文章目录(toc)：无目录时也保持一定高度，不塌缩 —— */
+.sidebar-toc-wrapper{ min-height:270px; }
+.sidebar-toc-wrapper:empty::before,
+.sidebar-toc-wrapper .toc:empty::before{
+  content:"本文暂无目录";
+  display:block;opacity:.4;font-size:.85em;
+  padding:18px 4px;text-align:center;
+}
+
+/* —— 返回顶部按钮：去掉太极图，直接显示向上箭头 —— */
+.sidebar-top .sidebar-top-taichi{ display:none !important; }
+.sidebar-top .arrow-up{ opacity:1 !important; }
+@media (hover:hover){
+  .sidebar-top .arrow-up{ opacity:1 !important; }
+  .sidebar-top:hover .arrow-up{ opacity:1 !important; }
+}
+
+/* —— 瞬间 ticker 条 —— */
+/* —— 瞬间 ticker 条 —— */
+#moments-bar{
+  width:calc(100% - 32px);margin:62px 16px 0;
+  background:var(--color-wrap);
+  border:1px solid var(--red-4);border-radius:10px;
+  position:relative;z-index:10;overflow:hidden;
+}
+#moments-ticker-link{
+  display:flex;align-items:stretch;
+  height:46px;text-decoration:none;color:inherit;
+}
+.moments-label{
+  flex:0 0 auto;display:flex;align-items:center;
+  padding:0 14px;font-size:.9rem;font-weight:600;
+  color:var(--red-1);border-right:1px solid var(--red-5);
+}
+.moments-ticker-wrap{
+  flex:1;position:relative;overflow:hidden;
+}
+.moments-ticker-item{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;color:#9a5a5a;
+  opacity:0;transform:translateY(100%);
+  transition:opacity .5s ease,transform .5s ease;
+}
+.moments-ticker-item.active{opacity:1;transform:translateY(0);}
+.moments-ticker-item.leaving{opacity:0;transform:translateY(-100%);}
+
+/* —— 瞬间列表页 —— */
+.moments-page{ max-width:680px;margin:2em auto;padding:0 16px; }
+.moments-page-title{ font-size:1.4rem;margin-bottom:.6em;color:var(--red-1); }
+.moments-epigraph{
+  font-size:.95rem;line-height:1.9;color:var(--red-2);
+  font-style:italic;letter-spacing:.5px;
+  margin:0 0 2em;padding:.8em 1.2em;
+  border-left:3px solid var(--red-3);
+  background:var(--red-6);border-radius:0 8px 8px 0;
+  opacity:.88;
+}
+.moments-item{
+  display:flex;flex-direction:column;gap:4px;
+  padding:14px 0;border-bottom:1px solid var(--red-5);
+}
+.moments-item-text{ font-size:1rem;line-height:1.7; }
+.moments-item-date{ font-size:.8rem;opacity:.5; }
+
+
+.mkm-bark{
+  position:fixed;z-index:99999;pointer-events:none;
+  font-family:'BarkJP','LoaderHan',cursive,serif;
+  font-size:2rem;font-weight:700;
+  color:#c0182a;
+  text-shadow:0 0 8px rgba(192,24,42,.45),0 1px 2px rgba(0,0,0,.3);
+  transform:translate(-50%,-50%);
+  will-change:transform,opacity;
+  animation:mkm-bark-rise .55s cubic-bezier(.22,.61,.36,1) forwards;
+}
+/* 中文词：优先中文毛笔，の等假名回退日文字体 */
+.mkm-bark.cn{ font-family:'LoaderHan','BarkJP',cursive,serif; }
+@keyframes mkm-bark-rise{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.6) rotate(-4deg);}
+  25%{opacity:1;transform:translate(-50%,-64%) scale(1.12) rotate(2deg);}
+  55%{opacity:1;transform:translate(-50%,-80%) scale(1) rotate(-1deg);}
+  100%{opacity:0;transform:translate(-50%,-128%) scale(.92) rotate(0);}
+}
+@media (prefers-reduced-motion:reduce){ .mkm-bark{animation-duration:.4s;} }
+
+[data-theme="dark"] #main-nav .main-nav-link{color:#ebc4c4!important;}
+[data-theme="dark"] #main-nav .nav-category .main-nav-link{color:#dba0a0!important;}
+.letter-trigger{text-decoration:none;}

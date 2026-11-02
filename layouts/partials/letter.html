@@ -1,0 +1,35 @@
+{{- if .Site.Params.contact.email -}}
+{{- $css := resources.Get "css/letter.css" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- if .Site.Params.letter.enable -}}
+{{- $js := resources.Get "js/letter.js" | minify | fingerprint -}}
+<dialog id="letter-dialog" class="letter-dialog" aria-labelledby="letter-title">
+  <div class="letter-composition">
+    {{- with .Site.Params.letter.image -}}
+    <img class="letter-mkm" src="{{ partial "helpers/artithmURL.html" . }}" width="1536" height="1024" alt="写信插画" loading="lazy" decoding="async">
+    {{- end -}}
+    <button class="letter-close" type="button" data-letter-close aria-label="收起信纸">×</button>
+    <form class="letter-paper" id="letter-form" action="{{ .Site.Params.letter.endpoint | relURL }}" data-challenge-url="{{ .Site.Params.letter.challenge_endpoint | relURL }}" method="post">
+      <div class="letter-heading">
+        <h2 id="letter-title">致 {{ .Site.Params.author | default .Site.Title }}</h2>
+        <p class="letter-recipient">{{ .Site.Params.contact.email }}</p>
+      </div>
+      <label class="letter-sr-only" for="letter-message">正文</label>
+      <textarea id="letter-message" name="message" placeholder="提笔，写下此刻想说的话……" maxlength="5000" rows="6" spellcheck="true" aria-describedby="letter-status" autofocus></textarea>
+      <div class="letter-address">
+        <label class="letter-field-label" for="letter-contact">邮寄地址</label>
+        <textarea id="letter-contact" class="letter-contact-input" name="contact" placeholder="倾诉随心，字里相认，可留下您的电子邮箱或通讯地址" maxlength="1000" rows="2" spellcheck="false" aria-describedby="letter-status"></textarea>
+      </div>
+      <div class="letter-trap" aria-hidden="true"><label for="letter-website">请留空</label><input id="letter-website" name="website" tabindex="-1" autocomplete="off"></div>
+      <div class="letter-check">
+        <label for="letter-answer">小小校验 <span id="letter-question">正在准备…</span></label>
+        <input id="letter-answer" name="challengeAnswer" type="text" inputmode="numeric" pattern="[0-9]{1,2}" maxlength="2" autocomplete="off" aria-describedby="letter-status" required>
+        <button type="button" class="letter-check-refresh" data-letter-challenge-refresh>换一题</button>
+      </div>
+      <div class="letter-bottom"><p id="letter-status" class="letter-status" role="status" aria-live="polite" aria-atomic="true">纸短情长，择心回复。</p><button class="letter-send" type="submit">寄出这封信 <span aria-hidden="true">↗</span></button></div>
+    </form>
+  </div>
+</dialog>
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{- end -}}
+{{- end -}}

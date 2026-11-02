@@ -1,0 +1,47 @@
+baseURL = 'https://example.org/'
+title = 'Artithm'
+theme = 'hugo-theme-artithm'
+defaultContentLanguage = 'zh-cn'
+hasCJKLanguage = true
+
+[languages.zh-cn]
+locale = 'zh-CN'
+label = '简体中文'
+weight = 1
+
+[taxonomies]
+category = 'categories'
+tag = 'tags'
+
+[permalinks]
+posts = '/archives/:slug/'
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[params]
+author = 'Artithm'
+description = '写下所见，留下所想。一个安静的地方，装下日常与灵光。'
+mainSections = ['posts']
+
+[params.contact]
+email = 'hello@example.org'
+github = 'https://github.com/emirage-niallchen/hugo-theme-artithm'
+wechat = { account = 'artithm-demo', note = '这里是示例联系方式，请替换为自己的账号。' }
+
+[params.artithm]
+background = 'images/artithm/background.png'
+sidebar_background = 'images/artithm/sidebar.png'
+click_effect = true
+
+[params.pet]
+enable = true
+name = '桌宠'
+nicknames = ['桌宠', '摸鱼中', '营业中']
+
+[params.letter]
+enable = false
+
+[params.footer]
+since = 2026
+busuanzi = false

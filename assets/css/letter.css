@@ -1,0 +1,44 @@
+.sidebar-letter{display:flex;justify-content:center;margin:20px 0 4px}
+.letter-trigger{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;width:min(100%,220px);padding:10px 20px;border:0;border-radius:6px;background:transparent;color:#874b43;box-shadow:none;cursor:pointer;font:15px/1.5 'Songti SC','Noto Serif CJK SC','SimSun',serif;letter-spacing:.12em;transition:color .15s,transform .15s}
+.letter-trigger .contact-icon{display:inline-flex;width:24px;height:24px;flex-shrink:0}
+.letter-trigger .contact-icon svg{display:block;width:100%;height:100%}
+.letter-trigger-arrow{margin-left:8px;font-size:16px;opacity:.65}
+.letter-trigger:hover{color:#a15b50;transform:translateY(-2px)}
+.letter-trigger:focus-visible{outline:2px solid #ac625d;outline-offset:4px}
+html.letter-is-open{overflow:hidden}
+.letter-dialog{--letter-ink:#59413b;--letter-muted:#8c7368;--letter-accent:#9d504c;box-sizing:border-box;border:0;padding:12px 18px 24px;background:transparent;color:var(--letter-ink);width:min(600px,100%);max-width:100%;max-height:96vh;max-height:96dvh;overflow-y:auto;overscroll-behavior:contain;margin:auto;outline:none}
+.letter-dialog::backdrop{background:rgba(35,26,27,.66);backdrop-filter:blur(6px)}
+.letter-dialog *{box-sizing:border-box}
+.letter-composition{position:relative;padding-top:1px}
+.letter-mkm{position:relative;z-index:2;display:block;width:min(76%,360px);height:auto;margin:0 auto -42px;pointer-events:none;filter:drop-shadow(0 5px 6px rgba(58,31,26,.12))}
+.letter-close{position:absolute;z-index:3;right:0;top:18px;width:42px;height:42px;padding:0;border:1px solid rgba(255,246,230,.45);border-radius:50%;background:#fff7e9;color:#79534c;font:28px/1 serif;cursor:pointer;box-shadow:0 2px 12px #37221b20}
+.letter-paper{position:relative;border:1px solid #ddc9ae;border-radius:4px 4px 8px 8px;padding:42px 32px 18px;margin:0;background-color:#fff9ed;background-image:radial-gradient(ellipse at top left,#e4cda533,transparent 70%),url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23866b40' opacity='.05' filter='url(%23n)' d='M0 0h180v180H0z'/%3E%3C/svg%3E");box-shadow:0 18px 55px #170c1938,0 5px 0 -2px #f1e7d6,0 6px 0 -2px #cbb89e;font-family:'Songti SC','Noto Serif CJK SC','SimSun',serif;text-align:left}
+.letter-heading{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;margin-bottom:14px}
+.letter-paper h2{font-size:22px;line-height:1.4;font-weight:500;letter-spacing:.06em;color:var(--letter-ink);margin:0}
+.letter-recipient{font-family:Georgia,serif;color:var(--letter-muted);font-size:12px;line-height:1.6;margin:0;overflow-wrap:anywhere}
+.letter-field-label{display:block;color:var(--letter-ink);font-size:13px;line-height:1.5;letter-spacing:.08em;margin-bottom:8px}
+.letter-field-label span{font-size:11px;color:var(--letter-muted);letter-spacing:0}
+.letter-address{margin-top:20px}
+.letter-paper .letter-contact-input{min-height:80px;height:80px;max-height:160px;padding:10px 12px;border:1px dashed #cbb59b;border-radius:4px;background:#fffaf280;font-size:14px;line-height:24px;letter-spacing:.02em}
+.letter-paper textarea{display:block;width:100%;min-height:168px;max-height:45vh;resize:vertical;border:0;border-radius:0;background:repeating-linear-gradient(transparent 0,transparent 31px,#cdbda576 31px,#cdbda576 32px);color:var(--letter-ink);padding:0 3px;box-shadow:none;font:16px/32px 'Songti SC','Noto Serif CJK SC','SimSun',serif;outline:none;caret-color:var(--letter-accent)}
+.letter-paper #letter-message{min-height:160px;height:160px}
+.letter-paper textarea:focus-visible{outline:1px solid #b7836e88;outline-offset:6px}
+.letter-paper textarea::placeholder{color:#aa9688;opacity:1}
+.letter-bottom{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:22px}
+.letter-check{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:16px;color:var(--letter-muted);font-size:12px;line-height:1.7}
+.letter-check label{margin:0}.letter-check label span{margin-left:8px;color:var(--letter-ink)}
+.letter-check input{box-sizing:border-box;width:48px;min-width:48px;height:30px;padding:2px 6px;border:1px solid #cbb59b;border-radius:3px;background:#fffaf2;color:var(--letter-ink);font:16px/24px serif;text-align:center}
+.letter-check-refresh{padding:2px;border:0;background:transparent;color:var(--letter-muted);font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.letter-check input:focus-visible,.letter-check-refresh:focus-visible{outline:2px solid #aa7461;outline-offset:3px}
+.letter-send{border:1px solid #8f4542;border-radius:4px;background:var(--letter-accent);padding:11px 17px;color:#fff8ed;font:14px/1.4 'Songti SC','SimSun',serif;cursor:pointer;white-space:nowrap;transition:background .15s,transform .15s}
+.letter-send span{margin-left:8px}
+.letter-send:hover{background:#87433f;transform:translateY(-1px)}
+.letter-send:disabled{opacity:.65;cursor:wait;transform:none}
+.letter-send:focus-visible,.letter-close:focus-visible{outline:2px solid #aa7461;outline-offset:4px}
+.letter-status{flex:1;min-width:0;font-size:12px;line-height:1.8;letter-spacing:.04em;margin:0;color:var(--letter-muted);overflow-wrap:anywhere}
+.letter-status[data-state="error"]{color:#a33f39}
+.letter-status[data-state="success"]{color:#53714b}
+.letter-sr-only,.letter-trap{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(max-width:600px){.letter-dialog{padding:8px 14px 20px}.letter-mkm{width:min(76%,280px);margin-bottom:-34px}.letter-paper{padding:34px 24px 14px}.letter-close{top:8px;right:0;width:36px;height:36px}.letter-paper h2{font-size:20px}.letter-status{font-size:11px}.letter-send{padding:10px 13px}.letter-bottom{gap:8px}.letter-paper #letter-message{min-height:128px;height:128px}.letter-address{margin-top:16px}.letter-paper .letter-contact-input{font-size:16px}}
+@media(max-height:740px){.letter-mkm{width:min(64%,220px);margin-bottom:-28px}.letter-paper{padding-top:28px}.letter-paper #letter-message{min-height:128px;height:128px}.letter-bottom{margin-top:16px}}
+@media(prefers-reduced-motion:reduce){.letter-send,.letter-trigger{transition:none}}

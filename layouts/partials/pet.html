@@ -1,0 +1,23 @@
+{{- if .Site.Params.pet.enable -}}
+{{- $name := .Site.Params.pet.name | default "桌宠" -}}
+{{- $nicknames := .Site.Params.pet.nicknames | default (slice $name) -}}
+{{- $sheet := resources.Get "images/desktop-pet.png" | fingerprint -}}
+{{- $css := resources.Get "css/pet.css" | minify | fingerprint -}}
+{{- $js := resources.Get "js/pet.js" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+<aside id="artithm-pet" class="artithm-pet" aria-label="桌宠：{{ $name }}" data-spritesheet="{{ $sheet.RelPermalink }}" data-name="{{ $name }}" data-nicknames="{{ $nicknames | jsonify }}" hidden>
+  <div class="artithm-pet-companion">
+    <p class="artithm-pet-bubble" role="status" aria-live="polite" aria-atomic="true" hidden></p>
+    <button class="artithm-pet-hide" type="button" aria-label="收起{{ $name }}">×</button>
+    <button class="artithm-pet-touch" type="button" aria-label="摸摸{{ $name }}；拖动或用方向键挪位置" aria-describedby="artithm-pet-hint">
+      <span class="artithm-pet-sprite" aria-hidden="true"></span>
+    </button>
+    <button class="artithm-pet-name" type="button" aria-label="换个称号">{{ $name }}</button>
+  </div>
+  <button class="artithm-pet-restore" type="button" aria-label="让{{ $name }}出来" aria-describedby="artithm-pet-hint" hidden>
+    <span class="artithm-pet-sprite artithm-pet-peek" aria-hidden="true"></span>
+  </button>
+  <span id="artithm-pet-hint" class="artithm-pet-hint" role="tooltip">这好像是一只 猫猫？</span>
+</aside>
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{- end -}}

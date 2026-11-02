@@ -1,0 +1,36 @@
+{{- if .IsHome -}}
+{{- $items := (hugo.Data.moments.items | default slice) -}}
+{{- if $items -}}
+<div id="moments-bar">
+  <a href="{{ "moments/" | relLangURL }}" id="moments-ticker-link">
+    <span class="moments-label">瞬间</span>
+    <span class="moments-ticker-wrap">
+      <span class="moments-ticker-inner">
+        {{- range $index, $item := $items -}}
+          <span class="moments-ticker-item{{ if eq $index 0 }} active{{ end }}">{{ .text }}</span>
+        {{- end -}}
+      </span>
+    </span>
+  </a>
+</div>
+<script>
+(function(){
+  const items = document.querySelectorAll('.moments-ticker-item');
+  if(items.length <= 1) return;
+  let idx = 0;
+  setInterval(function(){
+    // 当前项添加 leaving 类（向上消失）
+    items[idx].classList.add('leaving');
+    items[idx].classList.remove('active');
+
+    // 500ms 后切换到下一项（从下方淡入）
+    setTimeout(function(){
+      items[idx].classList.remove('leaving');
+      idx = (idx + 1) % items.length;
+      items[idx].classList.add('active');
+    }, 500);
+  }, 5000);
+})();
+</script>
+{{- end -}}
+{{- end -}}

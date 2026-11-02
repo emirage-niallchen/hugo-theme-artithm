@@ -1,0 +1,28 @@
+name: Build example site
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.162.1
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: hugo-theme-artithm
+      - name: Install Hugo Extended
+        run: |
+          curl --fail --location --retry 3 \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz" \
+            --output "$RUNNER_TEMP/hugo.tar.gz"
+          tar -xzf "$RUNNER_TEMP/hugo.tar.gz" -C "$RUNNER_TEMP" hugo
+      - name: Build example site
+        working-directory: hugo-theme-artithm
+        run: '"$RUNNER_TEMP/hugo" --source exampleSite --themesDir ../.. --destination ../public --gc --minify --panicOnWarning'

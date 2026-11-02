@@ -1,0 +1,29 @@
+items:
+  - key: email
+    label: 写封信
+  - key: github
+    label: GitHub
+  - key: xiaohongshu
+    label: 小红书
+  - key: douyin
+    label: 抖音
+  - key: zhihu
+    label: 知乎
+  - key: bilibili
+    label: bilibili
+  - key: wechat
+    label: 微信公众号
+  - key: youtube
+    label: YouTube
+  - key: x
+    label: X
+  - key: sspai
+    label: 少数派
+  - key: substack
+    label: Substack
+  - key: medium
+    label: Medium
+  - key: v2ex
+    label: V2EX
+  - key: ghost
+    label: Ghost

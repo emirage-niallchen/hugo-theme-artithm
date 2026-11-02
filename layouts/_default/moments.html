@@ -1,0 +1,15 @@
+{{- define "main" -}}
+{{- $items := (hugo.Data.moments.items | default slice) -}}
+<article class="moments-page">
+  <h1 class="moments-page-title">{{ .Title }}</h1>
+  <p class="moments-epigraph">{{ .Site.Params.moments.epigraph }}</p>
+  <div class="moments-list">
+    {{- range sort $items "date" "desc" -}}
+    <div class="moments-item">
+      <span class="moments-item-text">{{ .text }}</span>
+      <time class="moments-item-date">{{ .date }}</time>
+    </div>
+    {{- end -}}
+  </div>
+</article>
+{{- end -}}
